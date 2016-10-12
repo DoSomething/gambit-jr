@@ -22,11 +22,16 @@ function gambit_filter_bot_json($data, $post, $context) {
     'tags',
   ];
   foreach ($remove as $property) {
-    unset($data->data[$property]);
+    if (isset($data->data[$property])) {
+      unset($data->data[$property]);
+    }
   }
 
   // Unsetting type doesn't work in our foreach loop, so we unset here.
-  unset($data->data['type']);
+  if (isset($data->data['type'])) {
+    unset($data->data['type']);
+  }
+
   $data->data['title'] = $data->data['title']['rendered'];
 
   return $data;
