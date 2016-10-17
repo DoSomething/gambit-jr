@@ -40,4 +40,27 @@ function gambit_filter_bot_json($data, $post, $context) {
 add_filter( 'rest_prepare_campaignbot', 'gambit_filter_bot_json', 10, 3 );
 add_filter( 'rest_prepare_donorschoosebot', 'gambit_filter_bot_json', 10, 3 );
 
+/**
+ * Adds CSS to WP post form to remove unused elements.
+ */
+function gambit_admin_css() {
+  echo "
+  <style type='text/css'>
+  #edit-slug-box {
+    display: none;
+  }
+  #pods-meta-more-fields h2, #pods-meta-more-fields .handlediv {
+    display: none;
+  }
+  #post-status-info {
+    display: none;
+  }
+  #wp-content-wrap {
+    display: none;
+  }
+  </style>
+  ";
+}
+add_action( 'admin_head', 'gambit_admin_css' );
+
 ?>
